@@ -1,8 +1,7 @@
 Git Commands
 ============
 
-### Getting & Creating Projects
-
+### Getting & Creating Projects 
 | Command | Description |
 | ------- | ----------- |
 | `git init` | Initialize a local Git repository |
@@ -10,9 +9,9 @@ Git Commands
 | `git config --global user.name "jp"` | Configure user name |
 | `git config --global user.email "jp@gmail.com"` | configure user email address |
 | `git config  --list  ` | git configuration listing |
+ 
 
-### Basic Snapshotting
-
+### Basic Snapshotting 
 | Command | Description |
 | ------- | ----------- |
 | `git status` | Check status |
@@ -20,9 +19,11 @@ Git Commands
 | `git add -A` | Add all new and changed files to the staging area |
 | `git commit -m "[commit message]"` | Commit changes |
 | `git rm -r [file-name.txt]` | Remove a file (or folder) |
+| `git ls-files -s` | debug uility for  inspecting the staging index tree. |
+ 
+
 
 ### Branching & Merging ( Every branch must be updated and  managed individually )
-
 | Command | Description |
 | ------- | ----------- |
 | `git branch` | List branches (the asterisk denotes the current branch) |
@@ -43,8 +44,29 @@ Git Commands
 | `git stash` | Stash changes in a dirty working directory |
 | `git stash clear` | Remove all stashed entries |
 
-### Sharing & Updating Projects
 
+### Merge & Rebase 
+````
+Merge and Rebase are 2 ways to integrate changes from one branch to  another.
+* A merge results in a new commit, with changes that have occurred in the merged branch and master.
+* A  merge commut results in a cluttered git logs, and  makes it difficult to understand the project flow.
+* A merge commit should be used in cases where the commit should stand out. Should be reserved for large refactors, major commits etc.
+* A merge commit preserves history where as a  rebase rewrites it.
+
+* rebasing can be understood as “moving the base of a branch onto a different position”. When bringing in a mster branch changes into a feature branch its better to  rebase than merge.
+* A rebase doenst create  a new commit.
+* A rebase results in a  clean, linear code commit history/logs.
+* Rebasing doesnt work with PUll  request.
+````
+| Command | Description | 
+| ------- | ----------- |
+| `git checkout  feature-branch01` | Checkout to the feature branch |
+| `git merge master ` | Merge the master branch to the feature-branch01 to bring the master updates to feature-branch01 |
+| `git merge -no-ff [the feature branch] ` | Merges a feature branch with active branch, no fast forward merge is done. Feature branch history is maintained. If fast forward merge is  done, the commit history is lost |
+| `git rebase master` | rebase feature-branch01 with master branch  |
+
+
+### Sharing & Updating Projects 
 | Command | Description |
 | ------- | ----------- |
 | `git push origin [branch name]` | Push a branch to your remote repository |
@@ -59,14 +81,40 @@ Git Commands
 | `git remote remove origin` | Remove a remote repository |
 | `git remote rename origin origin1` | Rename a remote repository |
 | `git remote set-url origin ssh://git@github.com/[username]/[repository-name].git` | Set a repository's origin branch to SSH |
+ 
 
+### Revert & Reset 
+````
+* Revert rolls back  any changes committed. A  revert creates a new  commit in the history.
+* Reset has 3 modes --soft, --hard, --mixed (defaut  mixed)
+````
+| Command | Description |
+| ------- | ----------- |
+| `git reset HEAD~ `| revert the last commit |
+| `git reset <commit>` | moves the HEAD and refs t |
+| `git reset --hard <commit id>` | 
+| `git revert HEAD~` | creates a new commit by moving the HEAD to previous commit |
+| `git revert <commmitid>` | creates a new commit by moving HEAD to specified commit id |
+
+ 
 ### Inspection & Comparison
-
 | Command | Description |
 | ------- | ----------- |
 | `git log` | View changes |
 | `git log --summary` | View changes (detailed) |
 | `git log --oneline` | View changes (briefly) |
+| `git log --oneline --decorate --graph --all` | detailed,coloured one line log info | 
 | `git diff [source branch] [target branch]` | Preview changes before merging |
 | `git diff  --staged ` | lists all the changes between staged area  and local repo. |
 | `git diff` | lists the changes between working dir and staged area |
+ 
+
+### Tags
+| Command | Description |
+| ------- | ----------- |
+| `git tag -a release1.1.0 -m "release 1.1.0 on in q1" <COMMITID/HEAD> ` | tagging a specific commit or head with a tag |
+| `git tag `| | list the tags |
+| `git show release1.1.0` | get details of a specific release | 
+| `git tag -d release1.1.0` | delete a tag |
+| `git push origin release1.1.0`| push a tag to  repo |
+ 
