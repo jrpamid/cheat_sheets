@@ -7,9 +7,9 @@ Configuration
 
 | Command | Description |
 | :------- | :----------- |
-| `$ git config  --list  ` | git configuration listing |
+| `$ git config --list  ` | git configuration listing |
 | `$ git config --global user.name "jp"` | Configure user name |
-| `$ git config --global help.aotocorrect 1` | enable auto corretion | 
+| `$ git config --global help.autocorrect 1` | enable auto correction | 
 | `$ git config --global user.email "jp@gmail.com"` | configure user email address |
 | `$ git config --global alias.hist "log --one-line --all --graph --decorate"` | creating an alias 'git hist' to display git logs |
 | `$ git config --global alias.gc "gc --prune=now --aggressive"` | garbage collection and optimizing the repo |
@@ -26,10 +26,10 @@ Basics
 | `$ git add [file-name.txt]` | Add a file to the staging area |
 | `$ git status` | Check status |
 | `$ git commit -a -m "add files and commit in same command"` | Add files and commit in a single command|
-| `$ git add repote origin https://github.com/jrpamid/reponame.git` | add a remote repo as origin |
+| `$ git add remote origin https://github.com/jrpamid/reponame.git` | add a remote repo as origin |
 | `$ git push -u origin master `| push local master branch to  remote origin same branch name |
 | `$ git commit  --amend`| Fix last wrong commit message |
-| `$ git rm -rf [file-name]` | Remove a file/folder forcefully |
+| `$ git rm -rf [file-name]` | Remove a file/folder forcefully from staging|
 | `$ git rm --dry-run *` | Just a dry-run, no actual delete |
 | `$ git ls-files -s` | Debug uility for  inspecting the staging index tree. |
 | `$ git show <commit_id>` | Show meta data and details about a specific commit |
